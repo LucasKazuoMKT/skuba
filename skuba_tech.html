@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skuba Tech Studio | O braço de tecnologia de Grandes Empresas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #000000;
+            --brand-purple: #6366f1;
+            --brand-blue: #3b82f6;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            overflow-x: hidden;
+            letter-spacing: -0.01em;
+            scroll-behavior: smooth;
+        }
+
+        /* Gradientes de fundo para profundidade visual */
+        .glow-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.12) 0%, transparent 40%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .card-glass {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-glass:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: var(--brand-purple);
+            transform: translateY(-8px);
+        }
+
+        .btn-primary {
+            background: #ffffff;
+            color: #000000;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-primary:hover {
+            background: #f1f5f9;
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .icon-circle {
+            background: var(--brand-purple);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            font-size: 10px;
+        }
+
+        .skuba-way-tab {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .skuba-way-tab.active {
+            color: var(--brand-purple);
+        }
+
+        .skuba-way-tab.active::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 24px;
+            background: var(--brand-purple);
+            border-radius: 2px;
+        }
+
+        .partner-logo {
+            filter: grayscale(1) brightness(2);
+            transition: all 0.3s ease;
+            opacity: 0.6;
+            max-height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .partner-logo:hover {
+            filter: grayscale(0) brightness(1);
+            opacity: 1;
+        }
+
+        .footer-link {
+            color: #94a3b8;
+            transition: color 0.3s ease;
+            font-size: 14px;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        /* Estilos específicos para o Scroll Snap da Seção Way */
+        .way-step-anchor {
+            height: 60vh; /* Altura para trigger do scroll */
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="glow-overlay"></div>
+
+    <!-- Navegação -->
+    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-black/60 backdrop-blur-xl border-b border-white/5">
+        <div class="flex items-center gap-2">
+            <span class="text-2xl font-black tracking-tighter">SKUBA</span>
+        </div>
+        
+        <div class="hidden md:flex gap-10 text-[13px] font-semibold uppercase tracking-widest text-gray-400">
+            <a href="#" class="hover:text-white transition">Início</a>
+            <a href="#servicos" class="hover:text-white transition">Serviços</a>
+            <a href="#skuba-way" class="hover:text-white transition">Skuba Way</a>
+            <a href="#cases" class="hover:text-white transition">Cases</a>
+        </div>
+
+        <div class="flex items-center gap-6">
+            <button class="btn-primary px-6 py-2.5 rounded-full text-[13px]">
+                <span class="icon-circle">➔</span> Agendar uma Call
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-32">
+        <h1 class="text-6xl md:text-8xl font-black max-w-5xl leading-[1.1] mb-12 tracking-tight">
+            Skuba Tech Studio, <br>
+            o braço de tecnologia <br>
+            de <span class="text-blue-500">Grandes Empresas</span>
+        </h1>
+
+        <button class="btn-primary px-10 py-5 rounded-full text-lg shadow-xl">
+            <span class="icon-circle text-base">➔</span> Quero saber mais
+        </button>
+
+        <!-- Seção de Parceiros -->
+        <div class="mt-32 w-full max-w-5xl flex flex-col items-center gap-10">
+            <span class="text-[10px] font-bold tracking-widest text-white/40 uppercase">Grandes empresas já confiam em nós</span>
+            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-24">
+                <img src="https://via.placeholder.com/180x60/FFFFFF/000000?text=PARCEIRO+1" alt="Parceiro 1" class="partner-logo">
+                <img src="https://via.placeholder.com/180x60/FFFFFF/000000?text=PARCEIRO+2" alt="Parceiro 2" class="partner-logo">
+                <img src="https://via.placeholder.com/180x60/FFFFFF/000000?text=EM+BREVE+3" alt="Parceiro 3" class="partner-logo opacity-20">
+                <img src="https://via.placeholder.com/180x60/FFFFFF/000000?text=EM+BREVE+4" alt="Parceiro 4" class="partner-logo opacity-20">
+            </div>
+        </div>
+    </section>
+
+    <!-- Soluções Section -->
+    <section id="servicos" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="card-glass rounded-[32px] p-12 flex flex-col items-start text-left">
+                <h3 class="text-3xl font-extrabold mb-6 leading-tight">Soluções <br>Personalizadas</h3>
+                <p class="text-slate-400 text-sm mb-10">
+                    Criamos soluções digitais ágeis e personalizadas para atender exatamente o que sua empresa precisa.
+                </p>
+                <div class="w-full h-px bg-white/10 mb-10"></div>
+                <ul class="space-y-5 text-sm font-medium">
+                    <li class="flex items-center gap-4 text-white"><span class="text-indigo-500">●</span> Desenvolvimento de MVP</li>
+                    <li class="flex items-center gap-4 text-white"><span class="text-indigo-500">●</span> Automação de Processos</li>
+                    <li class="flex items-center gap-4 text-white"><span class="text-indigo-500">●</span> Integração com Sistemas</li>
+                </ul>
+                <button class="btn-primary w-full mt-12 py-4 rounded-full justify-center">
+                    <span class="icon-circle">➔</span> Tenho interesse
+                </button>
+            </div>
+
+            <div class="card-glass border-indigo-500/40 bg-white/[0.04] rounded-[32px] p-12 flex flex-col items-start text-left relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-indigo-500 text-[10px] px-6 py-2 font-black uppercase tracking-widest rounded-bl-2xl">Mais Procurado</div>
+                <h3 class="text-3xl font-extrabold mb-6 leading-tight mt-4">Transformação Digital</h3>
+                <p class="text-slate-400 text-sm mb-10">
+                    Transformamos sua empresa de ponta a ponta, com inovação, suporte e otimização contínuos.
+                </p>
+                <div class="w-full h-px bg-white/10 mb-10"></div>
+                <ul class="space-y-5 text-sm font-medium">
+                    <li class="flex items-center gap-4 text-white"><span class="text-indigo-500">●</span> Equipe completa dedicada</li>
+                    <li class="flex items-center gap-4 text-white"><span class="text-indigo-500">●</span> Escalabilidade garantida</li>
+                    <li class="flex items-center gap-4 text-white"><span class="text-indigo-500">●</span> Inovação contínua</li>
+                </ul>
+                <button class="btn-primary w-full mt-12 py-4 rounded-full justify-center shadow-lg shadow-indigo-500/20">
+                    <span class="icon-circle">➔</span> Tenho interesse
+                </button>
+            </div>
+
+            <div class="card-glass rounded-[32px] p-12 flex flex-col items-start text-left">
+                <h3 class="text-3xl font-extrabold mb-6 leading-tight">Alocação <br>de Squad</h3>
+                <p class="text-slate-400 text-sm mb-10">
+                    Nossa equipe se dedica a projetos estratégicos e soluções escaláveis, com foco no desenvolvimento constante.
+                </p>
+                <div class="w-full h-px bg-white/10 mb-10"></div>
+                <ul class="space-y-5 text-sm font-medium">
+                    <li class="flex items-center gap-4 text-white"><span class="text-indigo-500">●</span> Squad Especializado</li>
+                    <li class="flex items-center gap-4 text-white"><span class="text-indigo-500">●</span> UX/UI Personalizado</li>
+                    <li class="flex items-center gap-4 text-white"><span class="text-indigo-500">●</span> Gestão Semanal Ágil</li>
+                </ul>
+                <button class="btn-primary w-full mt-12 py-4 rounded-full justify-center">
+                    <span class="icon-circle">➔</span> Tenho interesse
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skuba Way com Auto-Scroll/Intersection Observer -->
+    <section id="skuba-way" class="py-32 px-8 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-24 items-start">
+            <!-- Coluna Esquerda: Sticky Header -->
+            <div class="sticky top-40">
+                <h2 class="text-6xl font-black mb-10 tracking-tighter">SKUBA WAY</h2>
+                <div class="space-y-10 border-l border-white/10 pl-8">
+                    <div id="tab-discovery" class="skuba-way-tab active text-5xl font-black transition-all">Discovery</div>
+                    <div id="tab-inception" class="skuba-way-tab text-5xl font-black text-gray-800 transition-all">Inception</div>
+                    <div id="tab-engage" class="skuba-way-tab text-5xl font-black text-gray-800 transition-all">Engage</div>
+                    <div id="tab-ignite" class="skuba-way-tab text-5xl font-black text-gray-800 transition-all">Ignite</div>
+                </div>
+            </div>
+
+            <!-- Coluna Direita: Conteúdo que aciona a mudança -->
+            <div class="space-y-4">
+                <div data-way="discovery" class="way-step-anchor">
+                    <div class="bg-white/[0.03] p-16 rounded-[48px] border border-white/10 min-h-[400px] flex flex-col justify-center shadow-inner">
+                        <div class="text-indigo-500 text-xs font-black uppercase tracking-[0.3em] mb-6">Fase 01</div>
+                        <h4 class="text-4xl font-extrabold mb-8">Discovery</h4>
+                        <p class="text-xl text-slate-300 leading-relaxed font-medium">
+                            Nossa equipe se aprofunda nas necessidades e desejos da sua empresa, realizando uma análise detalhada do mercado e benchmarks para garantir o melhor ponto de partida.
+                        </p>
+                    </div>
+                </div>
+
+                <div data-way="inception" class="way-step-anchor">
+                    <div class="bg-white/[0.03] p-16 rounded-[48px] border border-white/10 min-h-[400px] flex flex-col justify-center shadow-inner">
+                        <div class="text-indigo-500 text-xs font-black uppercase tracking-[0.3em] mb-6">Fase 02</div>
+                        <h4 class="text-4xl font-extrabold mb-8">Inception</h4>
+                        <p class="text-xl text-slate-300 leading-relaxed font-medium">
+                            Aqui a estratégia ganha forma. Construímos um mapa mental detalhado da operação, documentando regras de negócio e definindo requisitos técnicos precisos.
+                        </p>
+                    </div>
+                </div>
+
+                <div data-way="engage" class="way-step-anchor">
+                    <div class="bg-white/[0.03] p-16 rounded-[48px] border border-white/10 min-h-[400px] flex flex-col justify-center shadow-inner">
+                        <div class="text-indigo-500 text-xs font-black uppercase tracking-[0.3em] mb-6">Fase 03</div>
+                        <h4 class="text-4xl font-extrabold mb-8">Engage</h4>
+                        <p class="text-xl text-slate-300 leading-relaxed font-medium">
+                            Desenvolvimento ativo. Designers e Devs trabalham em ciclos ágeis para transformar requisitos em código de alta performance e interfaces intuitivas.
+                        </p>
+                    </div>
+                </div>
+
+                <div data-way="ignite" class="way-step-anchor">
+                    <div class="bg-white/[0.03] p-16 rounded-[48px] border border-white/10 min-h-[400px] flex flex-col justify-center shadow-inner">
+                        <div class="text-indigo-500 text-xs font-black uppercase tracking-[0.3em] mb-6">Fase 04</div>
+                        <h4 class="text-4xl font-extrabold mb-8">Ignite</h4>
+                        <p class="text-xl text-slate-300 leading-relaxed font-medium">
+                            Lançamento e evolução. Monitoramos métricas em tempo real e aplicamos melhorias contínuas para manter seu produto na vanguarda do mercado.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-32 px-6">
+        <div class="max-w-7xl mx-auto bg-gradient-to-b from-[#0a0a1f] to-black rounded-[60px] p-12 md:p-24 border border-white/5 relative overflow-hidden text-center">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)] pointer-events-none"></div>
+            
+            <h2 class="text-5xl md:text-7xl font-black mb-10 tracking-tight leading-tight">
+                Vamos tirar sua ideia <br>do papel juntos?
+            </h2>
+            <p class="text-xl text-slate-400 mb-16 max-w-2xl mx-auto">
+                Agende uma conversa com nossos especialistas e descubra como a Skuba pode acelerar o seu negócio.
+            </p>
+            
+            <div class="flex flex-col md:flex-row justify-center gap-6">
+                <button class="btn-primary px-12 py-5 rounded-full text-lg">
+                    <span class="icon-circle">➔</span> Agendar Reunião
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-32 pb-16 px-8 border-t border-white/5 bg-black">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
+            <div class="col-span-1 md:col-span-1">
+                <span class="text-2xl font-black tracking-tighter block mb-8">SKUBA</span>
+                <p class="text-slate-500 text-sm leading-relaxed mb-8">
+                    Studio de tecnologia focado em alta performance e escalabilidade para grandes empresas.
+                </p>
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 cursor-pointer transition">
+                        <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-1">
+                <h5 class="text-white font-bold mb-8 uppercase text-[12px] tracking-widest">Serviços</h5>
+                <ul class="space-y-4">
+                    <li><a href="#" class="footer-link">MVP Builder</a></li>
+                    <li><a href="#" class="footer-link">Alocação de Squad</a></li>
+                    <li><a href="#" class="footer-link">Transformação Digital</a></li>
+                    <li><a href="#" class="footer-link">UI/UX Design</a></li>
+                </ul>
+            </div>
+
+            <div class="col-span-1">
+                <h5 class="text-white font-bold mb-8 uppercase text-[12px] tracking-widest">Empresa</h5>
+                <ul class="space-y-4">
+                    <li><a href="#" class="footer-link">Sobre nós</a></li>
+                    <li><a href="#" class="footer-link">Skuba Way</a></li>
+                    <li><a href="#" class="footer-link">Cases de Sucesso</a></li>
+                </ul>
+            </div>
+
+            <div class="col-span-1">
+                <h5 class="text-white font-bold mb-8 uppercase text-[12px] tracking-widest">Contato</h5>
+                <ul class="space-y-4">
+                    <li class="text-slate-400 text-sm">contato@skuba.tech</li>
+                    <li class="text-slate-400 text-sm">+55 (11) 99999-9999</li>
+                    <li class="text-slate-400 text-sm">São Paulo, SP - Brasil</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 gap-8">
+            <p class="text-slate-600 text-xs font-medium">
+                &copy; 2024 Skuba Tech Studio. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Configuração do Intersection Observer para as fases do Skuba Way
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -60% 0px', // Aciona quando o elemento está na parte superior/central
+            threshold: 0
+        };
+
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const wayId = entry.target.getAttribute('data-way');
+                    
+                    // Atualiza as tabs na esquerda
+                    document.querySelectorAll('.skuba-way-tab').forEach(tab => {
+                        tab.classList.remove('active');
+                        tab.classList.add('text-gray-800');
+                    });
+
+                    const activeTab = document.getElementById('tab-' + wayId);
+                    if (activeTab) {
+                        activeTab.classList.add('active');
+                        activeTab.classList.remove('text-gray-800');
+                    }
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        // Inicia a observação em cada âncora de conteúdo
+        document.querySelectorAll('.way-step-anchor').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
